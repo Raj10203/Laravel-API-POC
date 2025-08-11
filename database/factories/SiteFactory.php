@@ -17,7 +17,9 @@ class SiteFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "name"=> $this->faker->name,
+            "url"=> $this->faker->url,
+            "size_in_mw"=> $this->faker->numberBetween(1, 1000),
         ];
     }
 }

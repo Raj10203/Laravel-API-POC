@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('sites', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('url')->unique('url');
+            $table->integer('size_in_mw');
             $table->timestamps();
         });
     }

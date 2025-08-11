@@ -9,4 +9,10 @@ class Site extends Model
 {
     /** @use HasFactory<\Database\Factories\SiteFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        "name",
+        "url",
+        "size_in_mw",
+    ];
 }
