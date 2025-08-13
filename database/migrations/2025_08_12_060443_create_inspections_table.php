@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,6 +12,21 @@ return new class extends Migration
     {
         Schema::create('inspections', function (Blueprint $table) {
             $table->id();
+            $table->date('inspection_date');
+
+            $table->foreignId('site_id')
+                ->constrained('sites')
+                ->cascadeOnDelete();
+
+            $table->foreignId('inspector_id')
+                ->constrained('users')
+                ->cascadeOnDelete();
+
+            $table->foreignId('drone_id')
+                ->constrained('drones')
+                ->cascadeOnDelete();
+
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

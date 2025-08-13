@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('drones', function (Blueprint $table) {
             $table->id();
+            $table->string('drone_name');
+            $table->string('serial_number')->unique();
+            $table->string('battrey_capacity_mah')->nullable();
+            $table->string('max_flight_time_minutes')->nullable();
+            $table->json('camera_specs')->nullable();
+            $table->integer('status')->default(0);
+            $table->date('last_maintenance_date')->nullable();
             $table->timestamps();
         });
     }

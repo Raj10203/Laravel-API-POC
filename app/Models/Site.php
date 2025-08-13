@@ -11,8 +11,13 @@ class Site extends Model
     use HasFactory;
 
     protected $fillable = [
-        "name",
-        "url",
-        "size_in_mw",
+        'name',
+        'address',
+        'city',
+        'state',
+        'is_active',
+        'size_in_mw',
+        'size_in_acre',
+        'url',
     ];
 }

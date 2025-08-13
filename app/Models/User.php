@@ -45,4 +45,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function inspectionsAsInspector()
+    {
+        return $this->hasMany(Inspection::class, 'inspector_id');
+    }
+
 }
