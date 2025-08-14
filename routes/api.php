@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\InspectionController;
 use App\Http\Controllers\API\SiteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,3 +25,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/sites/{site}', [SiteController::class, 'update']);
     Route::delete('/sites/{site}', [SiteController::class, 'destroy']);
 });
+Route::get('/inspections', [InspectionController::class, 'index']);
+

@@ -2,17 +2,26 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Http\Controllers\BaseController;
 use App\Http\Controllers\Controller;
 use App\Models\Inspection;
 use Illuminate\Http\Request;
 
-class InspectionController extends Controller
+class InspectionController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $inspections = Inspection::with('site')
+            ->select('site_id')
+            ->orderBy('site_id')
+            ->distinct()
+            ->get();
+
+
+        return response()->json($inspections);
         //
     }
 

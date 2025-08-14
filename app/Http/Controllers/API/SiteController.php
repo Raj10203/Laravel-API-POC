@@ -44,7 +44,7 @@ class SiteController extends BaseController
     )]
     public function index()
     {
-        $sites = Site::get();
+        $sites = Site::with('inspections')->where('is_active',1)->get();
         return response()->json([
             'status' => true,
             'data' => $sites

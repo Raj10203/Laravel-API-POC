@@ -20,4 +20,9 @@ class Site extends Model
         'size_in_acre',
         'url',
     ];
+
+    public function inspections()
+    {
+        return $this->hasMany(Inspection::class);
+    }
 }
