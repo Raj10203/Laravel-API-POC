@@ -184,6 +184,362 @@
                 ]
             }
         },
+        "/api/drones": {
+            "get": {
+                "tags": [
+                    "Drones"
+                ],
+                "summary": "Get all drones",
+                "operationId": "25890125e248fd58ba0f5d833ee26b57",
+                "responses": {
+                    "200": {
+                        "description": "List of drones"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Drones"
+                ],
+                "summary": "Create a new drone",
+                "operationId": "7fe03140dc280865b0f64754f7dc14ff",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "drone_name",
+                                    "serial_number"
+                                ],
+                                "properties": {
+                                    "drone_name": {
+                                        "type": "string"
+                                    },
+                                    "serial_number": {
+                                        "type": "string"
+                                    },
+                                    "battrey_capacity_mah": {
+                                        "type": "string"
+                                    },
+                                    "max_flight_time_minutes": {
+                                        "type": "string"
+                                    },
+                                    "camera_specs": {
+                                        "type": "object"
+                                    },
+                                    "status": {
+                                        "type": "integer"
+                                    },
+                                    "last_maintenance_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Drone created"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/drones/{drone}": {
+            "get": {
+                "tags": [
+                    "Drones"
+                ],
+                "summary": "Get a drone by ID",
+                "operationId": "746f2a011d1e40d5d5bbf7cd662219fb",
+                "parameters": [
+                    {
+                        "name": "drone",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Drone data"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Drones"
+                ],
+                "summary": "Update a drone",
+                "operationId": "6cb84493fbcec0de2cc5b6e50e1dd2de",
+                "parameters": [
+                    {
+                        "name": "drone",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "drone_name": {
+                                        "type": "string"
+                                    },
+                                    "serial_number": {
+                                        "type": "string"
+                                    },
+                                    "battrey_capacity_mah": {
+                                        "type": "string"
+                                    },
+                                    "max_flight_time_minutes": {
+                                        "type": "string"
+                                    },
+                                    "camera_specs": {
+                                        "type": "object"
+                                    },
+                                    "status": {
+                                        "type": "integer"
+                                    },
+                                    "last_maintenance_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Drone updated"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Drones"
+                ],
+                "summary": "Delete a drone",
+                "operationId": "bcc12cac544c6058b35d33098a73b5de",
+                "parameters": [
+                    {
+                        "name": "drone",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Drone deleted"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
+        "/api/inspections": {
+            "get": {
+                "tags": [
+                    "Inspections"
+                ],
+                "summary": "Get all inspections",
+                "operationId": "7a819a6bc42e6694d6cabc5748e9f132",
+                "responses": {
+                    "200": {
+                        "description": "List of inspections"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Inspections"
+                ],
+                "summary": "Create a new inspection",
+                "description": "Store a newly created resource in storage.",
+                "operationId": "91981377b2005c07f2639a61a122f800",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "site_id",
+                                    "inspection_date",
+                                    "inspector_id",
+                                    "status"
+                                ],
+                                "properties": {
+                                    "site_id": {
+                                        "type": "integer"
+                                    },
+                                    "inspection_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "inspector_id": {
+                                        "type": "integer"
+                                    },
+                                    "status": {
+                                        "type": "integer"
+                                    },
+                                    "drone_ids": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Inspection created"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/inspections/{inspection}": {
+            "get": {
+                "tags": [
+                    "Inspections"
+                ],
+                "summary": "Get an inspection by ID",
+                "description": "Display the specified resource.",
+                "operationId": "6e3116749acad185ad42cb0ca992c5c8",
+                "parameters": [
+                    {
+                        "name": "inspection",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Inspection data"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Inspections"
+                ],
+                "summary": "Update an inspection",
+                "description": "Update the specified resource in storage.",
+                "operationId": "e5b0856bd1ade7c4ec12fbe8466ab904",
+                "parameters": [
+                    {
+                        "name": "inspection",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "site_id": {
+                                        "type": "integer"
+                                    },
+                                    "inspection_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "inspector_id": {
+                                        "type": "integer"
+                                    },
+                                    "status": {
+                                        "type": "integer"
+                                    },
+                                    "drone_ids": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Inspection updated"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Inspections"
+                ],
+                "summary": "Delete an inspection",
+                "description": "Remove the specified resource from storage.",
+                "operationId": "8cfcdf5fbfba1a2c57cb84b800ed76ab",
+                "parameters": [
+                    {
+                        "name": "inspection",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Inspection deleted"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                }
+            }
+        },
         "/api/sites": {
             "get": {
                 "tags": [
@@ -470,6 +826,14 @@
         {
             "name": "Authentication",
             "description": "Authentication"
+        },
+        {
+            "name": "Drones",
+            "description": "Drones"
+        },
+        {
+            "name": "Inspections",
+            "description": "Inspections"
         },
         {
             "name": "Sites",

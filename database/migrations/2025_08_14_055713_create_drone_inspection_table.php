@@ -4,25 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('inspections', function (Blueprint $table) {
+        Schema::create('drone_inspections', function (Blueprint $table) {
             $table->id();
-            $table->date('inspection_date');
-
-            $table->foreignId('site_id')
-                ->constrained('sites')
+            $table->foreignId('drone_id')
+                ->constrained('drones')
                 ->cascadeOnDelete();
-
-            $table->foreignId('inspector_id')
-                ->constrained('users')
+            $table->foreignId('inspection_id')
+                ->constrained('inspections')
                 ->cascadeOnDelete();
-
-            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('inspections');
+        Schema::dropIfExists('drone_inspections');
     }
 };

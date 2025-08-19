@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Drone;
+use App\Models\DroneInspection;
 use App\Models\Inspection;
 use App\Models\Site;
 use App\Models\User;
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
         Drone::factory()->count(5)->create();
 
         Inspection::factory()->count(30)->create();
+        DroneInspection::factory()->count(50)->create();
 
     }
 }

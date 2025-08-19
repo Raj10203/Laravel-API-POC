@@ -18,7 +18,9 @@ class Drone extends Model
         'last_maintenance_date'
     ];
 
-    public function inspections() {
-        return $this->hasMany(Inspection::class);
+    public function inspections()
+    {
+        return $this->belongsToMany(Inspection::class, 'drone_inspections', 'drone_id', 'inspection_id')
+            ->using(DroneInspection::class);
     }
 }

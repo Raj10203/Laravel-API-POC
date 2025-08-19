@@ -20,7 +20,6 @@ class InspectionFactory extends Factory
             'site_id' => \App\Models\Site::inRandomOrder()->value('id') ?? \App\Models\Site::factory(),
             'inspection_date' => $this->faker->date(),
             'inspector_id' => \App\Models\User::inRandomOrder()->value('id') ?? \App\Models\User::factory(),
-            'drone_id' => \App\Models\Drone::inRandomOrder()->value('id') ?? \App\Models\Drone::factory(),
             'status' => $this->faker->numberBetween(0, 2),
         ];
     }

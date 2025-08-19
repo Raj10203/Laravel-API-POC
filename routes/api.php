@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\DroneController;
 use App\Http\Controllers\API\InspectionController;
 use App\Http\Controllers\API\SiteController;
 use Illuminate\Http\Request;
@@ -25,5 +26,19 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/sites/{site}', [SiteController::class, 'update']);
     Route::delete('/sites/{site}', [SiteController::class, 'destroy']);
 });
+
+// Drone CRUD
+Route::get('/drones', [DroneController::class, 'index']);
+Route::post('/drones', [DroneController::class, 'store']);
+Route::get('/drones/{drone}', [DroneController::class, 'show']);
+Route::put('/drones/{drone}', [DroneController::class, 'update']);
+Route::delete('/drones/{drone}', [DroneController::class, 'destroy']);
+
+// Inspection CRUD
 Route::get('/inspections', [InspectionController::class, 'index']);
+Route::post('/inspections', [InspectionController::class, 'store']);
+Route::get('/inspections/{inspection}', [InspectionController::class, 'show']);
+Route::put('/inspections/{inspection}', [InspectionController::class, 'update']);
+Route::delete('/inspections/{inspection}', [InspectionController::class, 'destroy']);
+
 

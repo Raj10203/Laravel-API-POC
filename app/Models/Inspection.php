@@ -22,9 +22,10 @@ class Inspection extends Model
         return $this->belongsTo(Site::class);
     }
 
-    public function drone()
+    public function drones()
     {
-        return $this->belongsTo(Drone::class);
+        return $this->belongsToMany(Drone::class, 'drone_inspections', 'drone_id','inspection_id')
+            ->using(DroneInspection::class);
     }
 
     public function inspector()
